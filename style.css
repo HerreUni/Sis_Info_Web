@@ -1,4 +1,4 @@
-.colorTitulos{
+.azul{
     color: blue;
 }
 
@@ -9,4 +9,6 @@ h1{
 p{
     font-family: Arial, sans-serif;
     font-size: 20px;
+    color: green;
 }
+
