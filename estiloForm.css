@@ -45,7 +45,7 @@ body {
   margin-bottom: 5px;
 }
 
-/* Sección derecha */
+/* Sección central */
 .central-section {
   flex: 1;
   max-width: 900px;
@@ -128,4 +128,86 @@ button:hover {
 h1{
     text-align: center;
     color: #149683;
+}
+
+.logo {
+    display: block;
+    margin: 0 auto 20px;
+    max-width: 150px;
+    height: auto;
+}
+
+/* PARA LA PÁGINA DE SELECCIONAR PRODUCTO*/
+.top-section {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+
+  max-width: 1150px;
+  margin: 0 auto;
+
+  background-color: #fff;
+  color: #000;
+
+  border-radius: 8px;
+  padding: 30px 25px 30px 25px; /* Ajuste de padding para incluir espacio a la izquierda */
+}
+
+.logo-small {
+    display: block;
+    max-width: 80px;         /* Más pequeño que los 150px originales */
+    height: auto;
+    margin: 0;            /* Menos margen que el original */
+  }
+
+/* Estilos para la barra de búsqueda */
+.search-container {
+    display: flex;
+    flex: 1;
+    align-items: center;
+    
+    max-width: 600px;
+    margin: 0 auto;
+    height: auto;
+}
+
+.search-bar {
+    width: 100%;
+    padding: 12px;
+    border: 2px solid #00a884;
+    border-radius: 25px 0 0 25px;
+    font-size: 1rem;
+    outline: none;
+}
+
+.search-button {
+    background-color: #00a884;
+    border: 2px solid #00a884;
+    border-radius: 0 25px 25px 0;
+    color: white;
+    cursor: pointer;
+    font-size: 1rem;
+}
+
+.search-button:hover {
+    background-color: #008f6f;
+    border-color: #008f6f;
+}
+
+.caja{
+  background-color: #555;
+  border: solid 5px black;
+  margin 10px;
+  width: 110px;
+  height: 110px;
+}
+
+.flex-container{
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  flex-direction: row;
+  padding: 10px;
+  margin-left: 20px;
+  margin-right: 20px;
 }
