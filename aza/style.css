@@ -563,3 +563,63 @@ body {
   .albums-grid{ grid-template-columns: repeat(2,1fr) }
   .playlists-row{ overflow:auto }
 }
+
+/* Menú desplegable en reproductor_musica.html */
+.dropdown-menu {
+  position: absolute;
+  top: 60px;
+  right: 12px;
+  background-color: #111;
+  border: 1px solid rgba(255,255,255,0.08);
+  padding: 12px;
+  border-radius: 10px;
+  z-index: 1000;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.6);
+  /* Quita display: none; de aquí para que sea visible por defecto cuando no tiene 'hidden' */
+}
+
+.dropdown-menu.hidden {
+  display: none;  /* Solo oculta cuando tiene la clase 'hidden' */
+}
+
+.dropdown-menu ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.dropdown-menu li {
+  margin: 10px 0;
+}
+
+.dropdown-menu a {
+  color: var(--text-foreground);
+  text-decoration: none;
+  font-weight: 600;
+  transition: color 160ms ease;
+}
+
+.dropdown-menu a:hover {
+  color: var(--neon-cyan);
+  text-decoration: underline;
+}
+
+.profile-pic {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  display: block;
+  margin: 0 auto 10px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.4);
+}
+
+/* Estilo para el cuadro decorativo blanco */
+.decorative-frame {
+  border: 2px solid white;  /* Borde blanco sólido */
+  border-radius: 14px;      /* Bordes redondeados para un aspecto decorativo */
+  padding: 1.5rem;          /* Espacio interior para que los campos no queden pegados al borde */
+  background: rgba(255, 255, 255, 0.1);  /* Fondo blanco semi-transparente para un toque sutil */
+  box-shadow: 0 0 15px rgba(255, 255, 255, 0.3);  /* Sombra blanca para un efecto de brillo decorativo */
+  margin-top: 1rem;         /* Un poco de espacio arriba para separar del título */
+}
+
