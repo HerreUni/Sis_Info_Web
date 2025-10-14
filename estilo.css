@@ -15,36 +15,6 @@ body {
   gap: 60px;
 }
 
-/* Sección izquierda */
-.left-section {
-  flex: 1;
-}
-
-.left-section h1 {
-  font-size: 2.5rem;
-  line-height: 1.2;
-  color: #00a884;
-}
-
-.left-section h1 span {
-  color: #00d19b;
-}
-
-.left-section p {
-  color: #ccc;
-  margin: 10px 0 25px;
-}
-
-.comentario {
-  margin-top: 20px;
-  font-style: italic;
-}
-
-.comentario p:first-child {
-  color: #fff;
-  margin-bottom: 5px;
-}
-
 /* Sección central */
 .central-section {
   flex: 1;
@@ -67,10 +37,6 @@ body {
   font-weight: bold;
 }
 
-.top-link a {
-  color: #007b66;
-  text-decoration: none;
-}
 
 form {
   display: flex;
@@ -195,19 +161,52 @@ h1{
 }
 
 .caja{
-  background-color: #555;
-  border: solid 5px black;
-  margin 10px;
-  width: 110px;
-  height: 110px;
+  border: solid 2px black;
+  margin: 10px;
+  width: 120px;
+  height: 120px;
+
+  border-radius: 2px;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  flex-direction: column;
+
 }
 
 .flex-container{
   display: flex;
-  justify-content: space-around;
-  align-items: center;
-  flex-direction: row;
-  padding: 10px;
-  margin-left: 20px;
-  margin-right: 20px;
+  flex-wrap: wrap;          /* Permite que los elementos se envuelvan a la siguiente línea */
+  justify-content: center;
+  align-items: flex-start;  /*Alinea todas las cajas arriba en cada fila*/
+  gap: 20px;                /* Espacio entre las cajas */
+  padding: 20px;
+  max-width: 1150px;
+  margin: 0 auto;           /* Centra el contenedor en la página */
+}
+
+.caja-img {
+  width: 100%;          /* que ocupe todo el ancho de la caja */
+  height: 100%;         /* que ocupe toda la altura */
+  object-fit: cover;    /* recorta la imagen sin deformarla */
+  border-radius: 5px;   /* opcional: esquinas redondeadas */
+}
+
+.texto-img {
+  text-align: center;
+  color: white;
+  font-weight: bold;
+  background-color: rgba(0, 0, 0, 0.5); /* Fondo semitransparente para mejorar la legibilidad */
+  margin-top: 5px;       /* Espacio entre la imagen y el texto */
+  position: static; /* Posiciona el texto sobre la imagen */
+  bottom: 5px; /* Ajusta la posición desde la parte inferior */
+  width: 100%; /* Asegura que el texto ocupe todo el ancho de la caja */
+}
+
+.titulo-categoria {
+  width: 100%;                /* Hace que ocupe toda la fila */
+  text-align: left;           /* Alinea el texto a la izquierda */
+  color: #fff;
+  font-size: 1.5rem;
+  margin: 10px;        /* Espacio arriba y abajo */
 }
