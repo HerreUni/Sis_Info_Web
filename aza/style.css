@@ -1,0 +1,565 @@
+/* Estilos extraídos de inicio_sesion.html */
+/* Reset básico */
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html, body { height: 100%; }
+
+/* Fondo negro y tipografía */
+:root {
+  /* Paleta y variables reutilizables */
+  --bg-900: #000000;            /* fondo negro principal (negro puro) */
+  --bg-800: #000000;            /* fondo alternativo (se puede usar para variantes) */
+
+  /* Colores "neón" para acentos y efectos */
+  --neon-cyan: #00d4ff;         /* cian brillante (principal) */
+  --neon-blue: #00a8ff;         /* azul neón secundario */
+  --neon-magenta: #b24bff;      /* magenta para degradados/acentos */
+
+  /* Utilitarios de color/texto */
+  --muted-ghost: rgba(255,255,255,0.06); /* blanco muy tenue para bordes/sombras */
+  --text-foreground: #e6f9ff;   /* color de texto principal, ligeramente azulado */
+}
+
+
+body {
+  background: var(--bg-900);    /* aplica el fondo oscuro global */
+  /* pila de fuentes: Poppins preferida, con alternativas del sistema */
+  font-family: 'Poppins', Inter, Roboto, "Segoe UI", system-ui, -apple-system, "Helvetica Neue", Arial;
+  color: var(--text-foreground); /* color de texto por defecto */
+
+  /* suavizado de fuentes para mejor legibilidad en distintos navegadores */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+
+  min-height: 100%;             /* asegura que el body ocupe toda la altura disponible */
+}
+
+/* Contenedor centrado vertical y horizontal */
+.hero {
+  /* Ocupa al menos la altura de la ventana y centra su contenido */
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative; /* permite posicionar elementos absolutos dentro */
+  padding: 2rem;      /* margen interior para separarlo de los bordes */
+}
+
+/* Título neon */
+.title {
+  /* fuente display para efecto 'techy' + fallback */
+  font-family: 'Orbitron', 'Poppins', sans-serif;
+  font-size: 5.2rem;        /* tamaño grande para hero */
+  letter-spacing: -0.02em;  /* ajuste fino del espaciado */
+  color: var(--neon-cyan);  /* color neón principal */
+  text-transform: none;     /* mantener la capitalización original */
+  font-weight: 700;         /* peso fuerte para presencia */
+  text-align: center;       /* centra el texto en pantallas pequeñas */
+  margin-bottom: 1.6rem;    /* separación respecto a los botones */
+  position: relative;       /* usado por el ::before del halo */
+}
+
+/* Halo circular que recuerda la onda del icono */
+.title::before {
+  /* pseudo-elemento centrado que crea un halo/neón difuso detrás del título */
+  content: '';
+  position: absolute;
+  left: 50%; top: 50%;
+  transform: translate(-50%, -50%); /* centra perfectamente el círculo */
+  width: 360px; height: 360px;      /* tamaño del halo */
+  border-radius: 50%;              /* forma circular */
+  /* degradado cónico que mezcla los colores neón para el efecto radial */
+  background: conic-gradient(
+    from 180deg at 50% 50%,
+    rgba(0,212,255,0.12), rgba(178,75,255,0.10), rgba(0,168,255,0.08), rgba(0,212,255,0.06)
+  );
+  filter: blur(28px) saturate(120%); /* suaviza y realza la saturación del halo */
+  z-index: -1;                       /* detrás del título */
+  opacity: 0.95;                     /* ligera transparencia para integración */
+}
+
+/* Animación de neón pulsatil: cambia sombra y ligera escala */
+.title { animation: neonPulse 3s ease-in-out infinite; }
+
+@keyframes neonPulse {
+  0%, 100% {
+    /* estado base: sombra tenue */
+    text-shadow: 0 0 12px rgba(0,212,255,0.12), 0 0 26px rgba(0,168,255,0.08);
+    transform: scale(1);
+  }
+  50% {
+    /* pulso: sombra más intensa y ligero crecimiento para efecto vivo */
+    text-shadow: 0 0 18px rgba(0,213,255,0.495), 0 0 36px rgba(178,75,255,0.18), 0 0 64px rgba(0,168,255,0.12);
+    transform: scale(1.03);
+  }
+}
+
+/* Contenedor de botones: controla el ancho y el espaciado en el hero */
+.btn-row {
+  width: 520px;           /* ancho preferido en escritorio */
+  max-width: 94vw;        /* no sobrepasar el 94% de la ventana en móviles */
+  display: flex;          /* coloca botones en fila */
+  justify-content: space-between; /* separa los dos botones a los extremos */
+  gap: 1rem;              /* espacio entre botones */
+  align-items: center;    /* alinear verticalmente */
+}
+
+/* Botones con estilo moderno y efectos hover/active */
+.btn {
+  padding: 0.85rem 1.6rem; /* espacio interno cómodo */
+  border-radius: 12px;     /* esquinas redondeadas */
+  font-size: 1rem;         /* tamaño de texto legible */
+  font-weight: 600;        /* peso seminegro */
+  cursor: pointer;         /* indica interactividad */
+
+  /* look y separación del fondo usando variables */
+  border: 1px solid var(--muted-ghost);
+  backdrop-filter: blur(6px); /* efecto vidrio ligero detrás del botón */
+
+  /* transiciones suaves para hover/active */
+  transition: transform 160ms cubic-bezier(.2,.9,.2,1), box-shadow 200ms ease, background 180ms ease;
+
+  display: inline-flex;     /* facilita alinear iconos y texto */
+  align-items: center; justify-content: center;
+  text-decoration: none;    /* elimina subrayado en enlaces que usan esta clase */
+  color: var(--text-foreground); /* color del texto */
+  min-width: 160px;         /* ancho mínimo para botones equilibrados */
+}
+
+/* Diferentes estilos para cada botón*/
+.btn-register {
+  background: linear-gradient(90deg, rgba(0, 213, 255, 0.537), rgba(177, 75, 255, 0.625));
+  color: #ffffff;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.6) inset, 0 6px 24px rgba(0,0,0,0.6);
+  border: 1px solid rgba(255,255,255,0.03);
+}
+
+/* Estilos para el botón de iniciar sesión */
+.btn-login {
+  background: linear-gradient(90deg, rgba(0, 213, 255, 0.537), rgba(177, 75, 255, 0.625));
+  color: #ffffff;
+  border: 1px solid rgba(0,168,255,0.25);
+  box-shadow: 0 8px 40px rgba(0,168,255,0.08), 0 2px 6px rgba(178,75,255,0.04) inset;
+}
+
+/* Efectos hover y active*/
+.btn:hover { transform: translateY(-6px) scale(1.02); box-shadow: 0 18px 60px rgba(0,168,255,0.10); }
+.btn:active { transform: translateY(-2px) scale(0.995); box-shadow: 0 6px 18px rgba(0,0,0,0.45) inset; }
+
+/* Enfasis sutil al foco (accesibilidad) */
+.btn:focus {
+  outline: none;
+  box-shadow: 0 0 0 4px rgba(57,255,20,0.09), 0 8px 20px rgba(0,0,0,0.6);
+}
+
+/* Ajustes responsivos */
+@media (max-width: 520px) {
+  .title { font-size: 3.2rem; margin-bottom: 1.6rem; }
+  .btn-row { width: 100%; flex-direction: row; }
+  .btn { flex: 1; }
+}
+
+/* Estilos para la página de inicio de sesión */
+.login-wrap {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+}
+
+/* Tarjeta de inicio de sesión */
+.login-card {
+  width: 420px;
+  max-width: 94vw;
+  background: #000000; /* tarjeta negra */
+  border-radius: 14px;
+  padding: 2.2rem 1.8rem;
+  box-shadow: 0 10px 40px rgba(0,0,0,0.6);
+  display: flex;
+  flex-direction: column;
+  gap: 1.1rem;
+}
+
+/* Título de la tarjeta */
+.login-card h2 {
+  margin: 0;
+  text-align: center;
+  color: var(--text-foreground);
+  font-family: 'Poppins', sans-serif;
+  font-weight: 600;
+  font-size: 1.3rem;
+}
+
+/* Campos de formulario */
+.login-field {
+  display:flex;
+  flex-direction:column;
+  gap:0.45rem;
+}
+
+/* Etiquetas de los campos */
+.login-field label {
+  font-size: 0.9rem;
+  color: rgba(230,249,255,0.9);
+}
+
+/* Estilos para los inputs */
+.login-field input {
+  padding: 0.7rem 0.9rem;
+  border-radius: 8px;
+  border: 1px solid rgba(230,249,255,0.08);
+  background: rgba(255,255,255,0.02);
+  font-size: 1rem;
+  color: var(--text-foreground);
+}
+
+.login-field input::placeholder{ color: rgba(230,249,255,0.45); }
+
+/* Acciones de la tarjeta (botón de login) */
+.login-actions {
+  display:flex;
+  justify-content:center;
+  margin-top: 0.6rem;
+}
+
+/* Estilos específicos para el botón de login dentro de la tarjeta */
+.login-actions .btn-login {
+  min-width: 220px;
+  padding: 0.85rem 1.4rem;
+  border-radius: 10px;
+}
+
+/* Título encima de la tarjeta */
+.page-title-above {
+  text-align: center;
+  color: var(--text-foreground);
+  font-family: 'Orbitron', sans-serif;
+  margin-bottom: 1.2rem;
+  font-size: 2.4rem;
+}
+
+/* Ajustes responsivos para la tarjeta de login */
+@media (max-width:480px){
+  .login-card{ padding:1.2rem;}
+  .page-title-above{ font-size:1.8rem; }
+}
+
+/* Enlace para continuar como invitado */
+.guest-link { text-align: center; margin-top: 2rem; position: relative; z-index: 40; pointer-events: auto; }
+.guest-link a {
+  color: var(--neon-cyan);
+  text-decoration: none;
+  padding: 0.45rem 0.7rem;
+  border-radius: 8px;
+  transition: background 160ms ease, transform 140ms ease;
+  display: inline-block;
+  background: rgba(0,0,0,0.04);
+}
+.guest-link a:hover { background: rgba(0,212,255,0.08); transform: translateY(-2px); text-decoration: underline; }
+
+.--reproductor-start /* removed stray token */
+/* --- Reproductor de música --- */
+.player-header{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:0.6rem 0.8rem;
+  position:fixed;
+  top:12px;
+  left:12px;
+  right:12px;
+  z-index:80;
+}
+.icon-btn {
+  background: transparent;               /* botón sin fondo para que se integre con el header */
+  border: 0;                             /* sin borde por defecto */
+  color: var(--text-foreground);         /* color del icono/texto */
+  cursor: pointer;                       /* indicador de elemento clicable */
+  display: inline-grid;                  /* hace centrar el SVG fácilmente */
+  place-items: center;                   /* centra el icono dentro del botón */
+  width: 40px; height: 40px;             /* tamaño cómodo para interacción táctil */
+  border-radius: 8px;                    /* esquinas suaves */
+}
+
+.icon-btn svg { display: block; }        /* evita espacios extra alrededor del SVG */
+
+.icon-btn:active { transform: translateY(1px); } /* sutil 'push' al activar */
+
+.icon-btn.profile img {                   /* imagen de perfil dentro del botón */
+  width: 34px; height: 34px;              /* ligeramente menor que el botón */
+  border-radius: 50%;                     /* avatar circular */
+  display: block;                         /* elimina gaps inline */
+}
+
+.header-right {
+  display: flex;                          /* fila para acciones del header (derecha) */
+  gap: 8px;                               /* separación entre botones */
+  align-items: center;                    /* alinear verticalmente */
+  justify-content: flex-end;              /* empuja los items hacia la derecha */
+  position: absolute;                     /* posicionado respecto al header */
+  right: 12px; top: 6px;                  /* ubicación dentro del header */
+}
+
+.player-header .header-right { margin-left: 0; }
+.player-header .back { margin-left: 8px; } /* espacio extra antes del botón "back" */
+
+.player-stage {
+  display: flex;                          /* contenedor principal del área de cartas */
+  align-items: center;                    /* centra verticalmente las cartas */
+  justify-content: center;                /* centra horizontalmente */
+  gap: 0.9rem;                            /* separación entre elementos */
+  padding: 3.6rem 0.75rem 1rem;           /* espacio arriba/abajo para la cabecera flotante */
+  position: relative;                     /* necesario para posicionar flechas absolutas */
+}
+
+.nav-arrow {
+  background: rgba(0,0,0,0.28);           /* fondo semitransparente para contraste */
+  border: 0;                              /* sin borde extra */
+  color: var(--neon-cyan);                /* color principal del icono */
+  font-size: 1.9rem;                      /* tamaño del glyph/svg */
+  cursor: pointer;                        /* interactividad */
+  padding: 12px 14px;                     /* área clicable generosa */
+  border-radius: 12px;                    /* radio para look moderno */
+  transition: transform 160ms ease, background 220ms ease; /* micro-interacciones */
+  box-shadow: 0 10px 22px rgba(0,0,0,0.55); /* profundidad sobre el fondo */
+  z-index: 120;                           /* por encima de las cartas */
+  display: inline-grid; place-items: center;
+}
+
+.nav-arrow:hover { transform: scale(1.08); background: rgba(0,212,255,0.08); } /* hover ligero */
+
+/* Flechas posicionadas como overlays a ambos lados del carrusel de cartas */
+.nav-arrow.left { position: absolute; left: 8px; top: 50%; transform: translateY(-50%); }
+.nav-arrow.right { position: absolute; right: 8px; top: 50%; transform: translateY(-50%); }
+
+/* efecto de brillo neon sobre el trazo del SVG dentro de la flecha */
+.nav-arrow svg path { transition: filter 160ms ease, stroke 160ms ease; }
+.nav-arrow:hover svg path { filter: drop-shadow(0 8px 18px rgba(0,212,255,0.25)); stroke: var(--neon-cyan); }
+
+.cards { display: flex; align-items: center; gap: 0.6rem; } /* fila de tarjetas (prev/current/next) */
+
+.card {
+  width: 230px; height: 320px;             /* tamaño por defecto de tarjeta */
+  background: #0f1724;                     /* fondo oscuro para la tarjeta */
+  border-radius: 10px;                     /* esquinas redondeadas */
+  overflow: hidden;                        /* recorta la portada a la esquina */
+  display: flex; flex-direction: column;   /* estructura interna */
+  align-items: center; justify-content: flex-end;
+  transform-style: preserve-3d;            /* favorece transformaciones 3D */
+  transition: transform 320ms cubic-bezier(.2,.9,.2,1), box-shadow 320ms ease, width 240ms;
+}
+
+.card .cover { width: 100%; height: 78%; display: flex; align-items: center; justify-content: center; }
+
+.cover-inner {
+  width: 98%; height: 98%;
+  background: linear-gradient(180deg,#223243,#7890af); /* fallback visual si no hay imagen */
+  border-radius: 10px;
+  box-shadow: inset 0 -20px 40px rgba(0,0,0,0.25);
+  position: relative;
+}
+
+.card .song-name { text-align: center; padding: 0.5rem 0.45rem; background: transparent; color: var(--text-foreground); font-weight: 700; font-size: 0.95rem; }
+
+.card.prev { opacity: 0.92; transform: translateX(-110px) scale(0.9) rotateY(6deg); filter: grayscale(10%); z-index: 1; }
+.card.current { width: 300px; height: 380px; transform: translateX(0) translateZ(36px) scale(1.07); box-shadow: 0 30px 72px rgba(0,0,0,0.66); border: 3px solid rgba(0,168,255,0.12); z-index: 3; }
+.card.next { transform: translateX(110px) scale(0.9) rotateY(-6deg); z-index: 1; }
+
+/* cover styles (images shown fully) */
+.card .cover-inner { width: 96%; height: 96%; background-repeat: no-repeat; background-position: center; border-radius: 6px; box-shadow: inset 0 -20px 40px rgba(0,0,0,0.25); transition: background 320ms ease, box-shadow 320ms ease, transform 320ms ease; }
+.card.prev .cover-inner, .card.next .cover-inner { background-size: contain; }
+.card.current .cover-inner { background-size: cover; }
+
+/* marco sutil para dar profundidad a la portada */
+.card .cover-inner::after {
+  content: '';
+  position: absolute;
+  width: 94%; height: 94%;
+  left: 50%; top: 50%; transform: translate(-50%,-50%);
+  border-radius: 5px;
+  box-shadow: inset 0 12px 24px rgba(0,0,0,0.18);
+  pointer-events: none;
+  mix-blend-mode: normal;
+  opacity: 0.9;
+}
+
+.card .cover { position: relative; }
+.card.current .cover-inner { transform: scale(1.01); }
+
+.player-controls { position: fixed; left: 12px; right: 12px; bottom: 12px; display: flex; justify-content: center; }
+
+.progress-row {
+  display: flex; align-items: center; gap: 0.6rem;
+  background: rgba(255,255,255,0.03);
+  padding: 0.5rem 0.75rem;
+  border-radius: 12px;
+  backdrop-filter: blur(6px);
+  box-shadow: 0 6px 20px rgba(0,0,0,0.55);
+}
+
+.control-btn {
+  background: linear-gradient(90deg,var(--neon-blue),var(--neon-cyan));
+  color: #001; border-radius: 50%; width: 48px; height: 48px; border: none; display: grid; place-items: center; font-size: 1rem; box-shadow: 0 6px 16px rgba(0,168,255,0.12); cursor: pointer;
+}
+
+.control-btn.playing { background: linear-gradient(90deg,var(--neon-magenta),var(--neon-blue)); }
+
+.progress-row input[type=range] { width: 260px; height: 6px; accent-color: var(--neon-cyan); appearance: none; border-radius: 6px; }
+.progress-row .time { color: var(--text-foreground); min-width: 36px; text-align: center; font-weight: 600; font-size: 0.88rem; }
+
+@media (max-width: 720px) {
+  .card { width: 120px; height: 150px; }
+  .card.current { width: 150px; height: 190px; }
+  .nav-arrow { font-size: 1.6rem; }
+}
+
+/* --- simple homepage styles (pagina_principal.html) --- */
+.app-header {
+  display: flex;                 /* layout principal en fila */
+  align-items: center;           /* centra verticalmente los elementos */
+  justify-content: space-between;/* separa logo/navegación y acciones */
+  padding: 20px 28px;            /* espacio interior alrededor del header */
+  background: transparent;       /* sin fondo sólido: se deja ver el fondo oscuro */
+  position: sticky;              /* el header se queda fijo al hacer scroll */
+  top: 0;                        /* pegado a la parte superior de la ventana */
+  z-index: 50;                   /* capa por encima del contenido principal */
+}
+
+.nav-left {
+  display: flex;                 /* fila para logo + items de navegación */
+  gap: 18px;                     /* separación entre elementos */
+  align-items: center;           /* alineación vertical consistente */
+}
+
+.nav-item {
+  color: rgba(255,255,255,0.75); /* color atenuado para items no activos */
+  text-decoration: none;         /* elimina subrayado en enlaces */
+  padding: 6px 8px;              /* área clicable cómoda */
+  border-radius: 6px;            /* esquinas suaves para focus/hover */
+}
+
+.nav-item.active {
+  color: white;                  /* item activo en blanco puro */
+  border-bottom: 2px solid rgba(255,255,255,0.12); /* indicador visual sutil */
+}
+
+.header-actions {
+  display: flex;                 /* contenedor para iconos/acciones a la derecha */
+  gap: 12px;                     /* espacio entre iconos */
+  align-items: center;           /* centra iconos verticalmente */
+}
+
+.search {
+  background: rgba(255,255,255,0.03); /* campo de búsqueda tenue sobre negro */
+  border: 1px solid rgba(255,255,255,0.04); /* borde muy sutil */
+  color: var(--text-foreground);  /* texto claro legible */
+  padding: 8px 10px;             /* relleno interno */
+  border-radius: 8px;            /* acabado redondeado */
+}
+
+.icon.small {
+  background: transparent;       /* fondo transparente para iconos pequeños */
+  border: 1px solid rgba(255,255,255,0.04); /* marco sutil para separar del fondo */
+  color: var(--text-foreground);  /* color del icono */
+  padding: 6px 10px;             /* área clicable agradable */
+  border-radius: 8px;            /* incluso los iconos pequeños tienen radio */
+}
+
+.main-wrap {
+  padding: 28px; /* Espacio interior alrededor del contenido principal */
+}
+
+.page-title {
+  font-size: 48px;       /* Título principal grande */
+  margin: 6px 0 18px;    /* Separación arriba/abajo */
+}
+
+.section-title {
+  font-size: 18px;                     /* Subtítulos de sección */
+  margin: 18px 0 8px;                  /* Margen superior e inferior */
+  color: rgba(255,255,255,0.9);        /* Color ligeramente atenuado para el texto */
+}
+
+.playlists-row {
+  display: flex;   /* fila horizontal de tarjetas */
+  gap: 18px;       /* espacio entre tarjetas */
+  margin-bottom: 18px;
+}
+
+.pl-card {
+  width: 170px; height: 120px;                  /* tamaño de la tarjeta */
+  background: rgba(255,255,255,0.03);           /* fondo sutil para contraste */
+  border-radius: 14px;                          /* esquinas redondeadas */
+  display: flex; flex-direction: column;        /* centra el contenido verticalmente */
+  align-items: center; justify-content: center;
+}
+
+.pl-art {
+  font-size: 32px;   /* tamaño del icono/decoración dentro de la tarjeta */
+  opacity: 0.9;      /* leve atenuación para que no sea tan brillante */
+}
+
+.pl-caption {
+  margin-top: 8px;                       /* separación del texto respecto al icono */
+  color: rgba(255,255,255,0.9);          /* color del texto */
+}
+
+.albums-grid {
+  display: grid;                         /* rejilla para las portadas */
+  grid-template-columns: repeat(4, 1fr); /* 4 columnas de igual ancho */
+  gap: 18px;                             /* espacio entre las celdas */
+  margin-top: 6px;
+}
+
+.album-card {
+  background: transparent; /* contenedor transparente que mantiene el radio */
+  border-radius: 12px;
+  overflow: hidden;        /* recorta la portada para que respete las esquinas */
+}
+
+.album-cover {
+  height: 120px;                      /* altura fija del área de la cubierta */
+  border-radius: 12px 12px 0 0;       /* solo las esquinas superiores redondeadas */
+}
+
+.album-title {
+  padding: 10px 12px;                 /* espacio interior del rótulo */
+  background: rgba(0,0,0,0.45);       /* barra semitransparente debajo de la portada */
+  color: var(--text-foreground);      /* color principal del texto */
+}
+
+.mini-player {
+  position: fixed;                     /* siempre visible en la parte inferior */
+  left: 12px; right: 12px; bottom: 12px;
+  background: rgba(0,0,0,0.6);         /* fondo translúcido para separar del contenido */
+  border-radius: 12px;
+  padding: 10px 14px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.6); /* sombra para elevar visualmente */
+}
+
+.player-inner {
+  display: flex; align-items: center; justify-content: space-between; /* layout de 3 columnas */
+}
+
+.player-controls-center {
+  display: flex; gap: 8px; align-items: center; /* controles del reproductor centrados */
+}
+
+.btn-ctrl {
+  background: transparent;                       /* botón con fondo transparente */
+  border: 1px solid rgba(255,255,255,0.06);      /* borde sutil */
+  color: var(--text-foreground);                 /* color del icono/texto */
+  padding: 8px 12px;                             /* espacio interior */
+  border-radius: 8px;                            /* esquinas redondeadas */
+}
+
+.btn-ctrl.play {
+  background: linear-gradient(90deg, var(--neon-blue), var(--neon-cyan)); /* botón "play" destacado */
+  color: #001; border: none; box-shadow: 0 8px 20px rgba(0,168,255,0.12);
+}
+
+@media (max-width:920px){
+  .albums-grid{ grid-template-columns: repeat(2,1fr) }
+  .playlists-row{ overflow:auto }
+}
