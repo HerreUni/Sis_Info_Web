@@ -16,8 +16,18 @@
 					<div class="decorative-frame">
 					<form class="login-form" action="#" method="post">
 						<div class="login-field">
-							<label for="name">Nombre completo</label>
-							<input id="name" name="name" type="text" placeholder="Tu nombre" required>
+							<label for="username">Nombre de usuario</label>
+							<input id="username" name="username" type="text" placeholder="Nombre de usuario" required>
+						</div>
+
+						<div class="login-field">
+							<label for="firstname">Nombre</label>
+							<input id="firstname" name="firstname" type="text" placeholder="Nombre completo" required>
+						</div>
+
+						<div class="login-field">
+							<label for="lastname">Apellidos</label>
+							<input id="lastname" name="lastname" type="text" placeholder="Apellidos" required>
 						</div>
 
 						<div class="login-field">
@@ -35,11 +45,16 @@
 							<input id="password2" name="password2" type="password" placeholder="********" required>
 						</div>
 
+						<div class="login-field">
+							<label for="birthdate">Fecha de nacimiento</label>
+							<input id="birthdate" name="birthdate" type="date" required>
+						</div>
+
 						<div class="login-actions">
 							<button class="btn btn-login" type="submit">Registrarse</button>
 						</div>
 						<div style="text-align:center; margin-top:0.6rem;">
-							<p style="font-size:0.9rem; color:#223144;">¿Ya tienes cuenta? <a href="inicio_sesion.html" style="color:var(--neon-cyan); text-decoration:underline;">Inicia sesión</a></p>
+							<p style="font-size:0.9rem; color:#4a6684;">¿Ya tienes cuenta? <a href="inicio_sesion.html" style="color:var(--neon-cyan); text-decoration:underline;">Inicia sesión</a></p>
 						</div>
 					</div>
 					</form>
