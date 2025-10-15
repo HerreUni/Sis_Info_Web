@@ -1,0 +1,54 @@
+/* Estilos del menú desplegable */
+.dropdown-menu {
+    position: absolute;
+    top: 60px;
+    right: 16px;
+    background-color: #1e1e1e;
+    border: 1px solid #333;
+    padding: 10px;
+    border-radius: 8px;
+    z-index: 1000;
+}
+
+.dropdown-menu.hidden {
+    display: none;
+}
+
+.dropdown-menu ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.dropdown-menu li {
+    margin: 8px 0;
+}
+
+.dropdown-menu a {
+    display: block;
+    color: white;
+    text-decoration: none;
+    padding: 8px;
+}
+
+.dropdown-menu .profile-pic {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    margin-bottom: 10px;
+}
+
+/* Estilos de formularios y errores */
+.error-message {
+    color: #cc3333;
+    font-size: 0.8rem;
+    margin-top: 2px;
+    margin-bottom: 4px;
+    margin-left: 9px;
+}
+
+input.error {
+    border: 1px solid #cc3333;
+    background-color: rgba(204, 51, 51, 0.1);
+    margin-bottom: 0;
+}
