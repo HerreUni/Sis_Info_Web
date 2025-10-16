@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>VMusic - Principal</title>
   <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="componentes.css">
 </head>
 <body>
   <header class="app-header">
@@ -13,18 +14,14 @@
       <a href="#" class="nav-item">Your Library</a>
     </nav>
     <input class="search" placeholder="Buscar" aria-label="Buscar" />
-    <div class="header-actions">
-      <!-- botón de menú -->
-      <div class="header-right">
-        <button class="icon-btn menu" aria-label="Menú" onclick="toggleMenu()">
-          <svg width="20" height="14" viewBox="0 0 20 14" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-            <rect y="1" width="20" height="2.6" rx="1" fill="white" />
-            <rect y="6" width="20" height="2.6" rx="1" fill="white" />
-            <rect y="11" width="20" height="2.6" rx="1" fill="white" />
-          </svg>
-        </button>
-      </div>
-    </header>
+    <button class="icon-btn menu-btn" onclick="toggleMenu()" aria-label="Menú">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <line x1="3" y1="12" x2="21" y2="12"></line>
+        <line x1="3" y1="6" x2="21" y2="6"></line>
+        <line x1="3" y1="18" x2="21" y2="18"></line>
+      </svg>
+    </button>
+  </header>
 
     <!-- Menú desplegable fuera del botón -->
     <nav id="dropdownMenu" class="dropdown-menu hidden">

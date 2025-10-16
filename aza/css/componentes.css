@@ -52,3 +52,48 @@ input.error {
     background-color: rgba(204, 51, 51, 0.1);
     margin-bottom: 0;
 }
+
+/* Estilos de botón de regreso */
+.header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 16px;
+}
+
+.icon-btn.back-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    width: 28px; 
+    height: 32px; 
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    margin: 0;
+}
+
+.icon-btn.back-btn svg {
+    stroke: white;
+    width: 30px;  
+    height: 30px; 
+    stroke-width: 2; 
+}
+
+.icon-btn.menu-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.icon-btn svg {
+    stroke: white;
+    width: 24px;
+    height: 24px;
+}
